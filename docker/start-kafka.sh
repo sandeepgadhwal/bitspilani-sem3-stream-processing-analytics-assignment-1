@@ -1,0 +1,2 @@
+/spaasgm/kafka/bin/zookeeper-server-start.sh /spaasgm/kafka/config/zookeeper.properties > /spaasgm/kafka/zoo.log 2>&1 &
+/spaasgm/kafka/bin/kafka-server-start.sh /spaasgm/kafka/config/server.properties > /spaasgm/kafka/kafka.log 2>&1 &

@@ -1,0 +1,40 @@
+
+session.execute("Drop TABLE comapp.posts;")
+
+session.execute("Drop Keyspace comapp;")
+
+session.execute("Create Keyspace comapp WITH replication = {'class':'SimpleStrategy', 'replication_factor' : 3};")
+
+session.set_keyspace("comapp")
+
+session.execute("Describe TABLES;").one()
+
+session.execute(f"""
+CREATE TABLE comapp.posts (
+    post_uuid TIMEUUID PRIMARY KEY,
+    post_name VARCHAR,
+    post_author_uuid VARCHAR,
+    post_text VARCHAR,
+    post_media LIST<FROZEN<MAP<TEXT, TEXT>>>,
+    post_url_slug VARCHAR,
+    post_scope LIST<TEXT>,
+    post_share_count INT,
+    post_comment_count INT,
+    post_reaction_count INT,
+    post_comments LIST<FROZEN<MAP<TEXT, TEXT>>>,
+    post_reactions LIST<FROZEN<MAP<TEXT, TEXT>>>
+);
+""")
+
+session.execute(f"""
+CREATE TABLE comapp.posts (
+    post_uuid timeuuid PRIMARY KEY,
+    post_name VARCHAR,
+    post_author_uuid VARCHAR,
+    post_text LIST<FROZEN<MAP<TEXT, TEXT>>>
+);
+""")
+
+session.execute("Describe TABLES;").one()
+
+

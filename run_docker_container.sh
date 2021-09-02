@@ -1,0 +1,1 @@
+docker run --rm --privileged -p 8000:800 spa-asgm

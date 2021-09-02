@@ -1,0 +1,24 @@
+{% if data.post_stats %}
+Post Stats in last one hour
+<ul>
+<li>Offensive Posts: {{ data.post_stats.offensive }}</li>
+<li>Age Restricted Posts: {{ data.post_stats.age_restricted }}</li>
+<li>Group Posts: {{ data.post_stats.group_post }}</li>
+<li>Global Posts: {{ data.post_stats.global_post }}</li>
+<li>Posts with Media: {{ data.post_stats.contains_media }}</li>
+</ul>
+{% else %}
+    <p>Post stats are not available.</p>
+{% endif %}
+
+Top 100 Authors From last hour
+{% if data.top_authors %}
+    <ul>
+    <li>Rank | Author | Posts</li>
+    {% for ath in data.top_authors %}
+        <li>{{ ath.index }} | <a href="/author/{{ ath.post_author_uuid }}/">{{ ath.post_author_uuid }}</a> | {{ ath.ct }}</li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No Authors are available.</p>
+{% endif %}
